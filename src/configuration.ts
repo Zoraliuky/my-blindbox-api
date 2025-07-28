@@ -6,7 +6,6 @@ import { join } from 'path';
 // 1. 导入 TypeORM 组件
 import * as typeorm from '@midwayjs/typeorm';
 // 2. 导入我们自己写的 User 实体
-import { User } from './entity/user.entity';
 
 @Configuration({
   imports: [
