@@ -1,7 +1,8 @@
 import { MidwayConfig } from '@midwayjs/core';
+import { User } from '../entity/user.entity';
 
 export default {
-  // use for cookie sign key, should change to your own and keep security
+  // 数据库配置
   typeorm: {
     dataSource: {
       default: {
@@ -9,10 +10,15 @@ export default {
         database: 'webapp.sqlite',
         synchronize: true,
         logging: true,
+        entities: [User], // 确保这里有指定实体
       },
     },
   },
-  keys: 'lkyjsdmn_zytjsdcz_lkyhzytsybzdhpy',
+
+  // Cookie 签名密钥
+  keys: 'lkyjsdmn_zytjsdcz_lkyhzytsybzdhpy', // 您的密钥
+
+  // 服务器端口
   koa: {
     port: 7001,
   },

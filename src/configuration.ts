@@ -3,9 +3,10 @@ import * as koa from '@midwayjs/koa';
 import * as validate from '@midwayjs/validate';
 import * as info from '@midwayjs/info';
 import { join } from 'path';
-// import { DefaultErrorFilter } from './filter/default.filter';
-// import { NotFoundFilter } from './filter/notfound.filter';
-import { ReportMiddleware } from './middleware/report.middleware';
+// 1. 导入 TypeORM 组件
+import * as typeorm from '@midwayjs/typeorm';
+// 2. 导入我们自己写的 User 实体
+import { User } from './entity/user.entity';
 
 @Configuration({
   imports: [
@@ -15,17 +16,16 @@ import { ReportMiddleware } from './middleware/report.middleware';
       component: info,
       enabledEnvironment: ['local'],
     },
+    // 3. 确保 typeorm 组件在这里被引入
+    typeorm,
   ],
   importConfigs: [join(__dirname, './config')],
 })
 export class MainConfiguration {
-  @App('koa')
+  @App()
   app: koa.Application;
 
   async onReady() {
-    // add middleware
-    this.app.useMiddleware([ReportMiddleware]);
-    // add filter
-    // this.app.useFilter([NotFoundFilter, DefaultErrorFilter]);
+    // ...
   }
 }
