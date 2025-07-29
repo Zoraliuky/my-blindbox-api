@@ -1,5 +1,7 @@
 import { MidwayConfig } from '@midwayjs/core';
 import { User } from '../entity/user.entity';
+import { BlindBox } from '../entity/blind-box.entity';
+import { Order } from '../entity/order.entity';  
 
 export default {
   // 数据库配置
@@ -10,7 +12,7 @@ export default {
         database: 'webapp.sqlite',
         synchronize: true,
         logging: true,
-        entities: [User], // 确保这里有指定实体
+        entities: [User,BlindBox,Order], // 确保这里有指定实体
       },
     },
   },
