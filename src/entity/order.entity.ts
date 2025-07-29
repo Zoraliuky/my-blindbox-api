@@ -29,7 +29,9 @@
       user: User;
 
       // 多对一关系：多个订单可以指向同一个盲盒商品
-      @ManyToOne(() => BlindBox, blindBox => blindBox.id)
+      @ManyToOne(() => BlindBox, blindBox => blindBox.id,{
+        onDelete:'CASCADE',
+      })
       blindBox: BlindBox;
     }
     
