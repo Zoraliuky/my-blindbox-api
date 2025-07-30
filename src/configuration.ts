@@ -3,9 +3,8 @@ import * as koa from '@midwayjs/koa';
 import * as validate from '@midwayjs/validate';
 import * as info from '@midwayjs/info';
 import { join } from 'path';
-// 1. 导入 TypeORM 组件
 import * as typeorm from '@midwayjs/typeorm';
-// 2. 导入我们自己写的 User 实体
+import * as crossDomain from '@midwayjs/cross-domain'; // 1. 导入跨域组件
 
 @Configuration({
   imports: [
@@ -15,8 +14,8 @@ import * as typeorm from '@midwayjs/typeorm';
       component: info,
       enabledEnvironment: ['local'],
     },
-    // 3. 确保 typeorm 组件在这里被引入
     typeorm,
+    crossDomain, // 2. 在这里启用它
   ],
   importConfigs: [join(__dirname, './config')],
 })
