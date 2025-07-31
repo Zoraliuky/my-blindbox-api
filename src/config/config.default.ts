@@ -2,6 +2,7 @@ import { MidwayConfig } from '@midwayjs/core';
 import { User } from '../entity/user.entity';
 import { BlindBox } from '../entity/blind-box.entity';
 import { Order } from '../entity/order.entity';
+import { Comment } from '../entity/comment.entity'; // 导入 Comment
 
 export default {
   typeorm: {
@@ -11,7 +12,7 @@ export default {
         database: 'webapp.sqlite',
         synchronize: true,
         logging: true,
-        entities: [User, BlindBox, Order],
+        entities: [User, BlindBox, Order,Comment],
       },
     },
   },
