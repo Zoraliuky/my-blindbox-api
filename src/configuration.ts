@@ -4,7 +4,8 @@ import * as validate from '@midwayjs/validate';
 import * as info from '@midwayjs/info';
 import { join } from 'path';
 import * as typeorm from '@midwayjs/typeorm';
-import * as crossDomain from '@midwayjs/cross-domain'; // 1. 导入跨域组件
+import * as crossDomain from '@midwayjs/cross-domain';
+import * as staticFile from '@midwayjs/static-file'; // 1. 导入
 
 @Configuration({
   imports: [
@@ -15,7 +16,8 @@ import * as crossDomain from '@midwayjs/cross-domain'; // 1. 导入跨域组件
       enabledEnvironment: ['local'],
     },
     typeorm,
-    crossDomain, // 2. 在这里启用它
+    crossDomain,
+    staticFile, // 2. 启用
   ],
   importConfigs: [join(__dirname, './config')],
 })
