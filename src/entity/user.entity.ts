@@ -1,40 +1,61 @@
-import{
-    Entity,
-    PrimaryGeneratedColumn,
-    Column,
-}from 'typeorm';
-@Entity('user')
-export class User{
+    import {
+      Entity,
+      PrimaryGeneratedColumn,
+      Column,
+      CreateDateColumn,
+      UpdateDateColumn,
+    } from 'typeorm';
+
+    // 定义一个用户角色的类型，只能是 'admin' 或 'user'
+    export type UserRole = 'admin' | 'user';
+
     /**
-   * ID
-   * @PrimaryGeneratedColumn 装饰器表示这是一个自增主键列。
-   */
-  @PrimaryGeneratedColumn()
-  id: number;
+     * 用户实体 - 对应数据库中的 'user' 表
+     */
+    @Entity('user')
+    export class User {
+      @PrimaryGeneratedColumn()
+      id: number;
 
-  /**
-   * 用户名
-   * @Column 装饰器表示这是一个普通的数据库列。
-   */
-  @Column({ unique: true, length: 50 })
-  username: string;
+      @Column({ unique: true, length: 50 })
+      username: string;
 
-  /**
-   * 密码
-   */
-  @Column({ length: 255 })
-  password: string;
+      @Column({ length: 255 })
+      password: string;
 
-  /**
-   * 电子邮箱
-   */
-  @Column({ unique: true })
-  email: string;
+      @Column({ unique: true })
+      email: string;
 
-  /**
-   * 用户昵称
-   * 用户可以不设置昵称。
-   */
-  @Column({ nullable: true, length: 50 })
-  nickname: string;
-}
+      @Column({ nullable: true, length: 50 })
+      nickname: string;
+
+      /**
+       * 新增：用户角色字段
+       * type: 'simple-enum' 表示这是一个简单的枚举类型
+       * enum: ['admin', 'user'] 限定了这个字段的值只能是这两者之一
+       * default: 'user' 表示新注册的用户，默认身份是普通用户
+       */
+      @Column({
+        type: 'simple-enum',
+        enum: ['admin', 'user'] as UserRole[],
+        default: 'user',
+      })
+      role: UserRole;
+
+      /**
+       * 记录创建时间
+       * @CreateDateColumn 装饰器会让TypeORM在插入新记录时，
+       * 自动将当前时间填充到这个字段。
+       */
+      @CreateDateColumn()
+      createTime: Date;
+
+      /**
+       * 记录更新时间
+       * @UpdateDateColumn 装饰器会让TypeORM在每次更新记录时，
+       * 自动将当前时间更新到这个字段。
+       */
+      @UpdateDateColumn()
+      updateTime: Date;
+    }
+    
