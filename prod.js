@@ -1,7 +1,11 @@
 'use strict';
-const koa = require('@midwayjs/koa');
+const koaFramework = require('@midwayjs/koa');
 const { Bootstrap } = require('@midwayjs/bootstrap');
+
+
 Bootstrap.configure({
   appDir: __dirname,
-  framework: koa,
+  framework: koaFramework,
+  imports: require('./dist/configuration'),
+
 }).run();
