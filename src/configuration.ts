@@ -5,13 +5,12 @@ import * as info from '@midwayjs/info';
 import { join } from 'path';
 import * as typeorm from '@midwayjs/typeorm';
 import * as crossDomain from '@midwayjs/cross-domain';
-import * as staticFile from '@midwayjs/static-file';
 
 @Configuration({
-  // importConfigs 的作用是告诉 MidwayJS 去扫描哪个文件夹来加载配置
-  // 这在开发环境和经典部署模式下是最佳实践
+  // 这个配置告诉 MidwayJS 去扫描 src/config 文件夹来加载配置
   importConfigs: [join(__dirname, './config')],
 
+  // 这里只加载开发时需要的组件
   imports: [
     koa,
     validate,
@@ -21,7 +20,6 @@ import * as staticFile from '@midwayjs/static-file';
     },
     typeorm,
     crossDomain,
-   // staticFile,
   ],
 })
 export class MainConfiguration {
@@ -32,3 +30,4 @@ export class MainConfiguration {
     // ...
   }
 }
+
