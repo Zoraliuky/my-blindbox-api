@@ -21,7 +21,7 @@ import * as staticFile from '@midwayjs/static-file';
     },
     typeorm,
     crossDomain,
-    staticFile,
+   // staticFile,
   ],
 })
 export class MainConfiguration {

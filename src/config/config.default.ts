@@ -31,12 +31,12 @@ export default {
   koa: {
     port: 7001,
   },
-  staticFile: {
+  /*staticFile: {
     dirs: {
       default: {
         prefix: '/', // 访问前缀，'/' 表示根路径
         dir: join(__dirname, '../../public'), // 指向打包后根目录的 public 文件夹
       },
     },
-  },
+  },*/
 } as MidwayConfig;
